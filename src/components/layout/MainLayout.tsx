@@ -77,7 +77,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
               )}
               
               <div className="flex items-center gap-3">
-                {/* Custom 3D Toggle Button */}
+                {/* 3D Toggle Button */}
                 <div className="toggle-container">
                   <div className="toggle">
                     <input 
