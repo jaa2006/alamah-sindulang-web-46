@@ -135,4 +135,43 @@
   .button-glow:hover::after {
     @apply opacity-100;
   }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/10 dark:bg-gray-800/10 border border-white/20 dark:border-gray-700/20 shadow-lg;
+  }
+  
+  .header-glow {
+    box-shadow: 0 0 15px 5px rgba(59, 130, 246, 0.2);
+  }
+  
+  .header-glow:hover {
+    box-shadow: 0 0 25px 8px rgba(59, 130, 246, 0.3);
+  }
+  
+  .nav-item-container {
+    @apply relative overflow-hidden bg-white/5 dark:bg-gray-800/5 border border-white/10 dark:border-gray-700/10 rounded-lg px-3 py-2 transition-all duration-300;
+  }
+  
+  .nav-item-container::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/30 to-blue-400/0 opacity-0 transition-opacity duration-700;
+    transform: translateX(-100%);
+  }
+  
+  .nav-item-container:hover::before {
+    @apply opacity-100;
+    transform: translateX(100%);
+    transition: transform 0.7s ease, opacity 0.7s ease;
+  }
 }
