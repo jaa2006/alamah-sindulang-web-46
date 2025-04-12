@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Moon, Sun, ArrowRight } from 'lucide-react';
@@ -54,9 +53,6 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                     className="h-8 w-auto"
                   />
                 </div>
-                <span className="font-semibold text-lg text-gray-800 dark:text-white hidden md:inline-block">
-                  SMK Al Amah Sindulang
-                </span>
               </Link>
               
               {!isMobile && (

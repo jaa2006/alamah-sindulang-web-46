@@ -3,10 +3,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-import GlassCard from '@/components/ui/glass-card';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 const Hero = () => {
   const isMobile = useIsMobile();
+
+  const schoolImages = [
+    {
+      src: "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Siswa SMK Al Amah Sindulang"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Fasilitas Pembelajaran"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Kegiatan Ekstrakurikuler"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Lingkungan Sekolah"
+    }
+  ];
 
   return (
     <section className="hero-section py-16 md:py-24">
@@ -32,17 +51,27 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="md:w-1/2 flex justify-center">
-          <GlassCard 
-            className="aspect-video max-w-[600px]" 
-            blobColor="#3B82F6"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1525921429624-479b6a26d84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
-              alt="Siswa SMK Al Amah Sindulang"
-              className="w-full h-full object-cover"
-            />
-          </GlassCard>
+        <div className="md:w-1/2 w-full overflow-hidden">
+          <div className="glass-carousel-container">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {schoolImages.map((image, index) => (
+                  <CarouselItem key={index} className="pl-0 md:pl-4">
+                    <div className="glass-card">
+                      <div className="relative w-full aspect-video overflow-hidden rounded-lg">
+                        <img
+                          src={image.src}
+                          alt={image.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <p className="glass-card-title">{image.title}</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
         </div>
       </div>
     </section>
