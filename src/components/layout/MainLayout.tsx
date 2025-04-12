@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -42,88 +42,87 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="sticky top-0 z-50 w-full py-4">
+      <header className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900 border-b shadow-sm">
         <div className="container px-4 md:px-6 mx-auto">
-          {/* 3D Header Container with Glow Effect */}
-          <div className="header-container transform perspective-1000 relative">
+          <div className="flex items-center justify-between h-16">
+            {/* School Logo */}
+            <Link to="/" className="flex items-center gap-2">
+              <img 
+                src="/lovable-uploads/442faac4-7399-47f7-b005-c1564e05d735.png" 
+                alt="SMK Al Amah Sindulang Logo" 
+                className="h-10 w-auto"
+              />
+              <span className="font-semibold text-lg hidden md:inline-block">
+                SMK Al Amah Sindulang
+              </span>
+            </Link>
             
-            {/* Header Content */}
-            <div className="flex items-center justify-between h-16 px-6 relative z-10">
-              {/* School Logo with Glow */}
-              <Link to="/" className="flex items-center gap-2 relative group">
-                <div className="flex items-center">
-                  <img 
-                    src="/lovable-uploads/442faac4-7399-47f7-b005-c1564e05d735.png" 
-                    alt="SMK Al Amah Sindulang Logo" 
-                    className="h-12 w-auto logo-glow"
-                  />
-                </div>
-              </Link>
-              
-              {/* Desktop Menu */}
-              {!isMobile && (
-                <nav className="hidden md:flex items-center gap-3">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.path}
-                      to={link.path}
-                      className="text-sm font-medium transition-all px-4 py-2 nav-item-glow"
-                    >
-                      {link.title}
-                    </Link>
-                  ))}
-                </nav>
-              )}
-              
-              <div className="flex items-center gap-3">
-                {/* 3D Toggle Button */}
-                <div className="toggle-container">
-                  <div className="toggle">
-                    <input 
-                      type="checkbox" 
-                      checked={theme === 'dark'} 
-                      onChange={toggleTheme}
-                      aria-label="Toggle theme"
-                    />
-                    <span className="button"></span>
-                    <span className="label">{theme === 'light' ? '☼' : '☽'}</span>
-                  </div>
-                </div>
-                
-                {/* Mobile Menu Button */}
-                {isMobile && (
-                  <button
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="md:hidden h-10 w-10 flex items-center justify-center theme-toggle-glow"
-                    aria-label="Toggle menu"
-                  >
-                    <span className="relative z-10">
-                      {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                    </span>
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Mobile Menu with Glow Effect */}
-        {isMobile && mobileMenuOpen && (
-          <div className="md:hidden mt-4 px-4 md:px-6">
-            <div className="header-container overflow-hidden">
-              <nav className="flex flex-col p-4 space-y-3">
+            {/* Desktop Menu */}
+            {!isMobile && (
+              <nav className="hidden md:flex items-center gap-6">
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className="text-sm font-medium py-2 px-4 nav-item-glow"
-                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors"
                   >
                     {link.title}
                   </Link>
                 ))}
               </nav>
+            )}
+            
+            <div className="flex items-center gap-4">
+              {/* Theme Toggle Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="rounded-full"
+              >
+                {theme === 'light' ? (
+                  <Moon className="h-5 w-5" />
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )}
+              </Button>
+              
+              {/* Mobile Menu Button */}
+              {isMobile && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="md:hidden"
+                  aria-label="Toggle menu"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="h-5 w-5" />
+                  ) : (
+                    <Menu className="h-5 w-5" />
+                  )}
+                </Button>
+              )}
             </div>
+          </div>
+        </div>
+        
+        {/* Mobile Menu */}
+        {isMobile && mobileMenuOpen && (
+          <div className="md:hidden border-t">
+            <nav className="flex flex-col p-4 space-y-3 bg-white dark:bg-gray-900">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="text-sm font-medium py-2 px-4 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.title}
+                </Link>
+              ))}
+            </nav>
           </div>
         )}
       </header>
@@ -166,7 +165,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="text-sm text-muted-foreground hover:text-school-blue dark:hover:text-school-blue-light"
+                  className="text-sm text-muted-foreground hover:text-primary"
                 >
                   {link.title}
                 </Link>
