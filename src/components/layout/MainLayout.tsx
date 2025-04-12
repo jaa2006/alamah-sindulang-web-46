@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X, Moon, Sun, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -42,59 +41,68 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900 border-b shadow-sm">
+      <header className="sticky top-0 z-50 w-full bg-gradient-to-b from-gray-900 to-gray-800 dark:from-black dark:to-gray-900 border-b border-gray-700">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex items-center justify-between h-16">
-            {/* School Logo */}
-            <Link to="/" className="flex items-center gap-2">
-              <img 
-                src="/lovable-uploads/442faac4-7399-47f7-b005-c1564e05d735.png" 
-                alt="SMK Al Amah Sindulang Logo" 
-                className="h-10 w-auto"
-              />
-              <span className="font-semibold text-lg hidden md:inline-block">
+            <Link to="/" className="flex items-center gap-2 group">
+              <div className="relative flex items-center justify-center rounded-full p-1 shadow-md bg-gradient-to-b from-gray-800 to-gray-900 border border-gray-700">
+                <img 
+                  src="/lovable-uploads/442faac4-7399-47f7-b005-c1564e05d735.png" 
+                  alt="SMK Al Amah Sindulang Logo" 
+                  className="h-8 w-auto z-10 transition-all"
+                />
+              </div>
+              <span className="font-semibold text-lg text-white hidden md:inline-block">
                 SMK Al Amah Sindulang
               </span>
             </Link>
             
-            {/* Desktop Menu */}
             {!isMobile && (
-              <nav className="hidden md:flex items-center gap-6">
+              <nav className="hidden md:flex items-center gap-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors"
+                    className="relative px-3 py-2 text-sm font-medium text-gray-200 hover:text-white transition-colors group"
                   >
                     {link.title}
+                    <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-300 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                   </Link>
                 ))}
+                
+                <Link
+                  to="/contact"
+                  className="ml-3 styled-nav-button group"
+                >
+                  Hubungi Kami
+                  <div className="inner-nav-button">
+                    <ArrowRight className="h-4 w-4 text-white transition-all group-hover:translate-x-1" />
+                  </div>
+                </Link>
               </nav>
             )}
             
             <div className="flex items-center gap-4">
-              {/* Theme Toggle Button */}
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
+                className="theme-toggle-button"
                 aria-label="Toggle theme"
-                className="rounded-full"
               >
                 {theme === 'light' ? (
-                  <Moon className="h-5 w-5" />
+                  <Moon className="h-5 w-5 text-gray-200" />
                 ) : (
-                  <Sun className="h-5 w-5" />
+                  <Sun className="h-5 w-5 text-gray-200" />
                 )}
               </Button>
               
-              {/* Mobile Menu Button */}
               {isMobile && (
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden"
+                  className="md:hidden text-gray-200 hover:text-white"
                   aria-label="Toggle menu"
                 >
                   {mobileMenuOpen ? (
@@ -108,20 +116,29 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </div>
         
-        {/* Mobile Menu */}
         {isMobile && mobileMenuOpen && (
-          <div className="md:hidden border-t">
-            <nav className="flex flex-col p-4 space-y-3 bg-white dark:bg-gray-900">
+          <div className="md:hidden border-t border-gray-700">
+            <nav className="flex flex-col p-4 space-y-2 bg-gray-900">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="text-sm font-medium py-2 px-4 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+                  className="text-sm font-medium py-2 px-4 text-gray-200 hover:text-white hover:bg-gray-800 rounded-md transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.title}
                 </Link>
               ))}
+              <Link
+                to="/contact"
+                className="styled-nav-button-mobile group mt-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Hubungi Kami
+                <div className="inner-nav-button">
+                  <ArrowRight className="h-4 w-4 text-white transition-all group-hover:translate-x-1" />
+                </div>
+              </Link>
             </nav>
           </div>
         )}
@@ -131,7 +148,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         {children}
       </main>
       
-      <footer className="w-full border-t bg-background">
+      <footer className="w-full border-t border-gray-700 bg-gradient-to-b from-gray-900 to-black text-white">
         <div className="container flex flex-col md:flex-row justify-between p-8 md:p-12 gap-8">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
@@ -174,7 +191,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </div>
         
-        <div className="border-t py-4 text-center text-sm text-muted-foreground">
+        <div className="border-t border-gray-800 py-4 text-center text-sm text-gray-400">
           <p>© {new Date().getFullYear()} SMK Al Amah Sindulang. All rights reserved.</p>
         </div>
       </footer>
