@@ -1,29 +1,28 @@
 
 import React from 'react';
 import { BookOpen, Award, Users, Building } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 
 const AboutSection = () => {
   const features = [
     {
-      icon: <BookOpen className="h-12 w-12 text-school-blue dark:text-school-blue-light" />,
+      icon: <BookOpen className="h-6 w-6 text-white" />,
       title: 'Kurikulum Terkini',
-      description: 'Menerapkan Kurikulum SMK 2013 Revisi yang adaptif dengan kebutuhan dunia kerja',
+      name: 'SMK 2013 Revisi',
     },
     {
-      icon: <Award className="h-12 w-12 text-school-blue dark:text-school-blue-light" />,
+      icon: <Award className="h-6 w-6 text-white" />,
       title: 'Akreditasi B',
-      description: 'Terakreditasi B dari BAN-SM dengan komitmen peningkatan mutu berkelanjutan',
+      name: 'BAN-SM',
     },
     {
-      icon: <Users className="h-12 w-12 text-school-blue dark:text-school-blue-light" />,
+      icon: <Users className="h-6 w-6 text-white" />,
       title: 'Pengajar Profesional',
-      description: 'Didukung oleh tenaga pengajar yang berkompeten di bidangnya',
+      name: 'Tenaga Ahli',
     },
     {
-      icon: <Building className="h-12 w-12 text-school-blue dark:text-school-blue-light" />,
+      icon: <Building className="h-6 w-6 text-white" />,
       title: 'Fasilitas Memadai',
-      description: 'Berbagai fasilitas untuk mendukung proses belajar mengajar',
+      name: 'Lingkungan Belajar',
     },
   ];
 
@@ -38,17 +37,23 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {features.map((feature, index) => (
-            <Card key={index} className="card-with-glow border shadow-sm h-full">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-                <div className="p-2 rounded-full bg-primary/5">
+            <div key={index} className="e-card playing mx-auto">
+              <div className="wave"></div>
+              <div className="wave"></div>
+              <div className="wave"></div>
+              
+              <div className="infotop">
+                <div className="flex justify-center">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
+                <br />
+                {feature.title}
+                <br />
+                <div className="name">{feature.name}</div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
