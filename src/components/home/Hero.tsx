@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import GlassCard from '@/components/ui/glass-card';
 
 const Hero = () => {
   const isMobile = useIsMobile();
@@ -32,18 +33,16 @@ const Hero = () => {
         </div>
         
         <div className="md:w-1/2 flex justify-center">
-          <div className="relative">
-            <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-school-blue to-school-blue-light opacity-75 blur animate-glow"></div>
-            <div className="relative bg-white dark:bg-gray-900 rounded-xl overflow-hidden border">
-              <img
-                src="https://images.unsplash.com/photo-1525921429624-479b6a26d84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
-                alt="Siswa SMK Al Amah Sindulang"
-                className="aspect-video object-cover"
-                width={isMobile ? 350 : 600}
-                height={isMobile ? 200 : 400}
-              />
-            </div>
-          </div>
+          <GlassCard 
+            className="aspect-video max-w-[600px]" 
+            blobColor="#3B82F6"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1525921429624-479b6a26d84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
+              alt="Siswa SMK Al Amah Sindulang"
+              className="w-full h-full object-cover"
+            />
+          </GlassCard>
         </div>
       </div>
     </section>

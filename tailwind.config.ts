@@ -138,6 +138,23 @@ export default {
 					'50%': {
 						transform: 'translateY(-5px)'
 					}
+				},
+				'blob-bounce': {
+					'0%': {
+						transform: 'translate(-100%, -100%) translate3d(0, 0, 0)'
+					},
+					'25%': {
+						transform: 'translate(-100%, -100%) translate3d(100%, 0, 0)'
+					},
+					'50%': {
+						transform: 'translate(-100%, -100%) translate3d(100%, 100%, 0)'
+					},
+					'75%': {
+						transform: 'translate(-100%, -100%) translate3d(0, 100%, 0)'
+					},
+					'100%': {
+						transform: 'translate(-100%, -100%) translate3d(0, 0, 0)'
+					}
 				}
 			},
 			animation: {
@@ -147,7 +164,8 @@ export default {
 				'fade-out': 'fade-out 0.3s ease-out',
 				'glow': 'glow 3s ease-in-out infinite',
 				'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'blob-bounce': 'blob-bounce 5s infinite ease'
 			},
 			transformStyle: {
 				'3d': 'preserve-3d'
