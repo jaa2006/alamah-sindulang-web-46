@@ -152,39 +152,21 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
   }
   
-  .transparent-header {
-    @apply backdrop-blur-md bg-white/70 dark:bg-gray-900/70;
-    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  .floating-header {
+    transition: all 0.3s ease;
+    transform: translateZ(0);
   }
   
-  .dark .transparent-header {
-    border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+  .shadow-floating {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15), 
+                0 5px 10px -5px rgba(0, 0, 0, 0.1);
   }
   
-  .header-glow {
-    box-shadow: 0 0 15px 5px rgba(59, 130, 246, 0.2);
+  .dark .shadow-floating {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 
+                0 5px 10px -5px rgba(0, 0, 0, 0.3);
   }
   
-  .header-glow:hover {
-    box-shadow: 0 0 25px 8px rgba(59, 130, 246, 0.3);
-  }
-  
-  .nav-item-container {
-    @apply relative overflow-hidden bg-white/5 dark:bg-gray-800/5 border border-white/10 dark:border-gray-700/10 rounded-lg px-3 py-2 transition-all duration-300;
-  }
-  
-  .nav-item-container::before {
-    @apply content-[''] absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/30 to-blue-400/0 opacity-0 transition-opacity duration-700;
-    transform: translateX(-100%);
-  }
-  
-  .nav-item-container:hover::before {
-    @apply opacity-100;
-    transform: translateX(100%);
-    transition: transform 0.7s ease, opacity 0.7s ease;
-  }
-  
-  /* New Glowing Header Styles */
   .header-container {
     background-color: var(--header-bg-color);
     border: 0.25em solid var(--glow-color);
@@ -217,7 +199,21 @@
       inset 0 0 0.75em 0.25em var(--glow-color);
   }
   
-  /* Nav Item Glowing Effect */
+  .nav-item-container {
+    @apply relative overflow-hidden bg-white/5 dark:bg-gray-800/5 border border-white/10 dark:border-gray-700/10 rounded-lg px-3 py-2 transition-all duration-300;
+  }
+  
+  .nav-item-container::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/30 to-blue-400/0 opacity-0 transition-opacity duration-700;
+    transform: translateX(-100%);
+  }
+  
+  .nav-item-container:hover::before {
+    @apply opacity-100;
+    transform: translateX(100%);
+    transition: transform 0.7s ease, opacity 0.7s ease;
+  }
+  
   .nav-item-glow {
     background-color: var(--btn-color);
     border: 0.1em solid var(--glow-color);
@@ -263,7 +259,6 @@
       inset 0 0 0.5em 0.15em var(--glow-color);
   }
   
-  /* 3D Toggle Button Styles */
   .toggle-container {
     display: inline-block;
     transform: scale(0.45);
@@ -362,7 +357,6 @@
     color: rgba(0, 0, 0, 0.8);
   }
   
-  /* Dark mode specific toggle styles */
   .dark .toggle .label {
     color: var(--glow-color);
     text-shadow: 0 0 5px var(--glow-color);
@@ -378,7 +372,6 @@
                 inset 0 20px 30px 0 rgba(83, 169, 172, 0.1);
   }
 
-  /* Header Button Styling */
   .styled-nav-button {
     @apply relative py-2 px-4 font-medium text-white bg-gradient-to-b from-gray-800 to-gray-900 
            rounded-full cursor-pointer shadow-lg border border-gray-700

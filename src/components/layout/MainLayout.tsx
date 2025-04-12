@@ -42,80 +42,82 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="relative flex items-center justify-center rounded-full p-1 bg-white/10 dark:bg-gray-900/30 backdrop-blur-sm">
-                <img 
-                  src="/lovable-uploads/442faac4-7399-47f7-b005-c1564e05d735.png" 
-                  alt="SMK Al Amah Sindulang Logo" 
-                  className="h-8 w-auto"
-                />
-              </div>
-              <span className="font-semibold text-lg text-gray-800 dark:text-white hidden md:inline-block">
-                SMK Al Amah Sindulang
-              </span>
-            </Link>
-            
-            {!isMobile && (
-              <nav className="hidden md:flex items-center gap-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className="relative px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                ))}
-                
-                <Link
-                  to="/contact"
-                  className="ml-3 px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center gap-2"
-                >
-                  Hubungi Kami
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </nav>
-            )}
-            
-            <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {theme === 'light' ? (
-                  <Moon className="h-5 w-5" />
-                ) : (
-                  <Sun className="h-5 w-5" />
-                )}
-              </Button>
+      <header className="sticky top-0 z-50 w-full">
+        <div className="container px-4 md:px-6 mx-auto my-4">
+          <div className="floating-header bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-full py-4 px-6 shadow-floating">
+            <div className="flex items-center justify-between h-12">
+              <Link to="/" className="flex items-center gap-2">
+                <div className="relative flex items-center justify-center rounded-full p-1">
+                  <img 
+                    src="/lovable-uploads/442faac4-7399-47f7-b005-c1564e05d735.png" 
+                    alt="SMK Al Amah Sindulang Logo" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+                <span className="font-semibold text-lg text-gray-800 dark:text-white hidden md:inline-block">
+                  SMK Al Amah Sindulang
+                </span>
+              </Link>
               
-              {isMobile && (
+              {!isMobile && (
+                <nav className="hidden md:flex items-center gap-4">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      className="relative px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                  
+                  <Link
+                    to="/contact"
+                    className="ml-3 px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  >
+                    Hubungi Kami
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </nav>
+              )}
+              
+              <div className="flex items-center gap-4">
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-                  aria-label="Toggle menu"
+                  onClick={toggleTheme}
+                  className="rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
+                  aria-label="Toggle theme"
                 >
-                  {mobileMenuOpen ? (
-                    <X className="h-5 w-5" />
+                  {theme === 'light' ? (
+                    <Moon className="h-5 w-5" />
                   ) : (
-                    <Menu className="h-5 w-5" />
+                    <Sun className="h-5 w-5" />
                   )}
                 </Button>
-              )}
+                
+                {isMobile && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    className="md:hidden text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    aria-label="Toggle menu"
+                  >
+                    {mobileMenuOpen ? (
+                      <X className="h-5 w-5" />
+                    ) : (
+                      <Menu className="h-5 w-5" />
+                    )}
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>
         
         {isMobile && mobileMenuOpen && (
-          <div className="md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-800">
+          <div className="md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 rounded-b-2xl mx-4 shadow-floating">
             <nav className="flex flex-col p-4 space-y-2">
               {navLinks.map((link) => (
                 <Link
