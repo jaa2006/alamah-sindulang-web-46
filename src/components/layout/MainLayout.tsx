@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Moon, Sun, ArrowRight } from 'lucide-react';
@@ -41,18 +42,18 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="sticky top-0 z-50 w-full bg-gradient-to-b from-gray-900 to-gray-800 dark:from-black dark:to-gray-900 border-b border-gray-700">
+      <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="relative flex items-center justify-center rounded-full p-1 shadow-md bg-gradient-to-b from-gray-800 to-gray-900 border border-gray-700">
+            <Link to="/" className="flex items-center gap-2">
+              <div className="relative flex items-center justify-center rounded-full p-1 bg-white/10 dark:bg-gray-900/30 backdrop-blur-sm">
                 <img 
                   src="/lovable-uploads/442faac4-7399-47f7-b005-c1564e05d735.png" 
                   alt="SMK Al Amah Sindulang Logo" 
-                  className="h-8 w-auto z-10 transition-all"
+                  className="h-8 w-auto"
                 />
               </div>
-              <span className="font-semibold text-lg text-white hidden md:inline-block">
+              <span className="font-semibold text-lg text-gray-800 dark:text-white hidden md:inline-block">
                 SMK Al Amah Sindulang
               </span>
             </Link>
@@ -63,21 +64,18 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className="relative px-3 py-2 text-sm font-medium text-gray-200 hover:text-white transition-colors group"
+                    className="relative px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                   >
                     {link.title}
-                    <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-300 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                   </Link>
                 ))}
                 
                 <Link
                   to="/contact"
-                  className="ml-3 styled-nav-button group"
+                  className="ml-3 px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center gap-2"
                 >
                   Hubungi Kami
-                  <div className="inner-nav-button">
-                    <ArrowRight className="h-4 w-4 text-white transition-all group-hover:translate-x-1" />
-                  </div>
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </nav>
             )}
@@ -87,13 +85,13 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="theme-toggle-button"
+                className="rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Toggle theme"
               >
                 {theme === 'light' ? (
-                  <Moon className="h-5 w-5 text-gray-200" />
+                  <Moon className="h-5 w-5" />
                 ) : (
-                  <Sun className="h-5 w-5 text-gray-200" />
+                  <Sun className="h-5 w-5" />
                 )}
               </Button>
               
@@ -102,7 +100,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden text-gray-200 hover:text-white"
+                  className="md:hidden text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                   aria-label="Toggle menu"
                 >
                   {mobileMenuOpen ? (
@@ -117,13 +115,13 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         </div>
         
         {isMobile && mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-700">
-            <nav className="flex flex-col p-4 space-y-2 bg-gray-900">
+          <div className="md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-800">
+            <nav className="flex flex-col p-4 space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="text-sm font-medium py-2 px-4 text-gray-200 hover:text-white hover:bg-gray-800 rounded-md transition-colors"
+                  className="text-sm font-medium py-2 px-4 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.title}
@@ -131,13 +129,11 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
               ))}
               <Link
                 to="/contact"
-                className="styled-nav-button-mobile group mt-2"
+                className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 mt-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Hubungi Kami
-                <div className="inner-nav-button">
-                  <ArrowRight className="h-4 w-4 text-white transition-all group-hover:translate-x-1" />
-                </div>
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </nav>
           </div>
@@ -148,7 +144,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         {children}
       </main>
       
-      <footer className="w-full border-t border-gray-700 bg-gradient-to-b from-gray-900 to-black text-white">
+      <footer className="w-full border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
         <div className="container flex flex-col md:flex-row justify-between p-8 md:p-12 gap-8">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
@@ -191,7 +187,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </div>
         
-        <div className="border-t border-gray-800 py-4 text-center text-sm text-gray-400">
+        <div className="border-t border-gray-200 dark:border-gray-800 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>© {new Date().getFullYear()} SMK Al Amah Sindulang. All rights reserved.</p>
         </div>
       </footer>
