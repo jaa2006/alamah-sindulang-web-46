@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Switch } from '@/components/ui/switch';
 
 type MainLayoutProps = {
   children: React.ReactNode;
@@ -76,15 +77,19 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
               )}
               
               <div className="flex items-center gap-3">
-                <button
-                  onClick={toggleTheme}
-                  className="h-10 w-10 flex items-center justify-center theme-toggle-glow"
-                  aria-label="Toggle theme"
-                >
-                  <span className="relative z-10">
-                    {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-                  </span>
-                </button>
+                {/* Custom 3D Toggle Button */}
+                <div className="toggle-container">
+                  <div className="toggle">
+                    <input 
+                      type="checkbox" 
+                      checked={theme === 'dark'} 
+                      onChange={toggleTheme}
+                      aria-label="Toggle theme"
+                    />
+                    <span className="button"></span>
+                    <span className="label">{theme === 'light' ? '☼' : '☽'}</span>
+                  </div>
+                </div>
                 
                 {/* Mobile Menu Button */}
                 {isMobile && (
